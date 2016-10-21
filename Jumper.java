@@ -5,8 +5,6 @@ import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 import java.awt.Color;
 
-
-
 /**
  *   A <code>Jumper</code> is an actor that will jump over Rocks and Flowers and
  * turn.
@@ -32,12 +30,11 @@ public class Jumper extends Actor implements Edible
     /**
      * Constructs a Jumper of a given color.
      * 
-     * @param JumperColor
-     *            the color for this Jumper
+     * @param jumperColor the color for this Jumper
      */
-    public Jumper( Color JumperColor )
+    public Jumper( Color jumperColor )
     {
-        setColor( JumperColor );
+        setColor( jumperColor );
     }
 
 
@@ -47,9 +44,13 @@ public class Jumper extends Actor implements Edible
     public void act()
     {
         if ( canJump() )
+        {
             jump();
+        }
         else
+        {
             turn();
+        }
     }
 
 
@@ -69,15 +70,17 @@ public class Jumper extends Actor implements Edible
     public void jump()
     {
         Grid<Actor> gr = getGrid();
-        if ( gr == null )
-            return;
         Location loc = getLocation();
         Location next = loc.getAdjacentLocation( getDirection() );
         Location twoAway = next.getAdjacentLocation( getDirection() );
         if ( gr.isValid( twoAway ) )
+        {
             moveTo( twoAway );
+        }
         else
+        {
             removeSelfFromGrid();
+        }
     }
 
 
@@ -91,19 +94,23 @@ public class Jumper extends Actor implements Edible
     public boolean canJump()
     {
         Grid<Actor> gr = getGrid();
-        if ( gr == null )
-            return false;
         Location loc = getLocation();
         Location next = loc.getAdjacentLocation( getDirection() );
         if ( !gr.isValid( next ) )
+        {
             return false;
+        }
         Actor object = gr.get( next );
         if ( !( ( object == null ) || ( object instanceof Flower )
             || ( object instanceof Rock ) ) )
+        {
             return false;
+        }
         Location twoAway = next.getAdjacentLocation( getDirection() );
         if ( !gr.isValid( twoAway ) )
+        {
             return false;
+        }
 
         object = gr.get( twoAway );
         return ( object == null ) || ( object instanceof Jumper );
