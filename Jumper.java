@@ -26,18 +26,6 @@ public class Jumper extends Actor implements Edible
         setColor( Color.PINK );
     }
 
-
-    /**
-     * Constructs a Jumper of a given color.
-     * 
-     * @param jumperColor the color for this Jumper
-     */
-    public Jumper( Color jumperColor )
-    {
-        setColor( jumperColor );
-    }
-
-
     /**
      * act method for the jumper that determined if jumper can or cannot jump
      */
