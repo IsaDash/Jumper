@@ -7,18 +7,15 @@ import info.gridworld.actor.Rock;
 import info.gridworld.grid.Location;
 import info.gridworld.actor.Flower;
 
-
 /**
- * TODO Write a one-sentence summary of your class here. TODO Follow it with
- * additional details about its purpose, what abstraction it represents, and how
- * to use it.
+ *  This class runs a world that contains a Jumper.
  *
- * @author TODO Name(s)
- * @version TODO DATE
- * @author Period: TODO
- * @author Assignment: GridWorld_Part3_Jumper
+ *  @author  Eric Fu
+ *  @version 10/20/16
+ *  @author  Period: 3
+ *  @author  Assignment: GridWorld_Part3_Jumper
  *
- * @author Sources: TODO
+ *  @author  Sources: BugRunner used as template.
  */
 public class JumperRunner
 {
@@ -29,14 +26,12 @@ public class JumperRunner
         bob.setColor( Color.BLUE );
         Jumper bob2 = new Jumper();
         bob2.setColor( Color.RED );
-        world.add( new Rock() );
-        world.add( new Flower() );
+        world.add(new Rock());
+        world.add(new Flower());
         world.add( new Actor() );
         world.add( new Actor() );
-        world.add( new Bug() );
         world.add( new Location( 7, 8 ), bob );
-        world.add( new Location( 5, 8 ), bob2 );
+        world.add( new Location( 5, 5 ), bob2 );
         world.show();
-
     }
 }
