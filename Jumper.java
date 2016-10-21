@@ -106,6 +106,6 @@ public class Jumper extends Actor implements Edible
             return false;
 
         object = gr.get( twoAway );
-        return ( object == null ) || ( object instanceof Flower );
+        return ( object == null ) || ( object instanceof Jumper );
     }
 }
