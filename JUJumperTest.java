@@ -8,19 +8,19 @@ import static org.junit.Assert.*;
  *  Jumper tests:.
  *  test01 - jumper next to edge of grid - should turn
  *  test02 - jumper 2 from edge of grid - should turn
- *  test03 - TODO Description
- *  test04 - TODO Description
- *  test05 - TODO Description
- *  test06 - TODO Description
- *  test07 - TODO Description
+ *  test03 - non-edible object 2 spaces in front - turn
+ *  test04 - edible object 2 spaces in front - jump, object disappears
+ *  test05 - spot 2 spaces in front is empty - move to it
+ *  test06 - object 1 space ahead - jump over
+ *  test07 - turns are 45 degrees
  *
- *  @author  TODO Your Name(s)
- *  @version TODO Date
+ *  @author  Selena Huang
+ *  @version oct 20, 2016
  *
- *  @author  Period: TODO
+ *  @author  Period: 3
  *  @author  Assignment - GridWorld Part 3 Jumper
  *
- *  @author  Sources: TODO
+ *  @author  Sources: none
  */
 public class JUJumperTest
 {
@@ -30,6 +30,8 @@ public class JUJumperTest
     private Grid<Actor> grid;
     private ActorWorld world;
     private Jumper jumper1;
+    private Jumper jumper2;
+    private Rock rock;
 
     /**
      * Invoked before each test to instantiate the objects
@@ -40,6 +42,8 @@ public class JUJumperTest
         grid = new BoundedGrid<Actor>(8, 8);
         world = new ActorWorld(grid);
         jumper1 = new Jumper();
+        jumper2 = new Jumper();
+        rock = new Rock();
     }
 
     /**
@@ -69,62 +73,76 @@ public class JUJumperTest
     }
 
     /**
-     * test03 - TODO Description
+     * test03 - non-edible object 2 spaces in front - turn
      */
     @Test
-    public void test03()
+    public void nonEdibleObject2SpacesInFront()
     {
-        // TODO complete test
+        Location loc = new Location(3, 3);
+        Location loc2 = new Location(1, 3);
+        world.add(loc, jumper1);
+        world.add(loc2, rock);
+        jumper1.act();
+
+        assertTrue(testOccupied(loc, jumper1, Location.NORTHEAST));
     }
 
     /**
-     * test04 - TODO Description
+     * test04 - edible object 2 spaces in front - jump, object disappears
      */
     @Test
-    public void test04()
+    public void edibleObject2SpacesInFront()
     {
-        // TODO complete test
+        Location loc = new Location(3, 3);
+        Location loc2 = new Location(1, 3);
+        world.add(loc, jumper1);
+        world.add(loc2, jumper2);
+        jumper1.act();
+
+        assertTrue(testOccupied(loc2, jumper1, Location.NORTH));
     }
 
     /**
-     * test05 - TODO Description
+     * test05 - spot 2 spaces in front is empty - move to it
      */
     @Test
-    public void test05()
+    public void noObject2SpacesInFront()
     {
-        // TODO complete test
+        Location loc = new Location(3, 3);
+        Location loc2 = new Location(1, 3);
+        world.add(loc, jumper1);
+        jumper1.act();
+
+        assertTrue(testOccupied(loc2, jumper1, Location.NORTH));
     }
 
     /**
-     * test06 - TODO Description
+     * test06 - object 1 space ahead - jump over
      */
     @Test
-    public void test06()
+    public void object1SpaceInFront()
     {
-        // TODO complete test
+        Location loc = new Location(3, 3);
+        Location loc2 = new Location(2, 3);
+        Location loc3 = new Location(1, 3);
+        world.add(loc, jumper1);
+        world.add(loc2, rock);
+        jumper1.act();
+
+        assertTrue(testOccupied(loc3, jumper1, Location.NORTH));
     }
 
     /**
-     * test07 - TODO Description
+     * test07 - turns are 45 degrees
      */
     @Test
-    public void test07()
+    public void turns()
     {
-        // TODO complete test
-    }
+        Location loc = new Location(3, 3);
+        world.add(loc, jumper1);
+        jumper1.turn();
 
-    /**
-     * Test helper method to test for empty location.
-     *
-     * @param loc null location if empty
-     * @return true if all assertions pass
-     */
-    private boolean testEmpty(Location loc)
-    {
-        Actor empty = grid.get( loc );
-        assertNull( "<<<<< " + loc + " should be empty. >>>>>", empty );
-
-        return true;
+        assertTrue(testOccupied(loc, jumper1, Location.NORTHEAST));
     }
 
     /**
