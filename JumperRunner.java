@@ -13,24 +13,30 @@ import info.gridworld.actor.Flower;
  * additional details about its purpose, what abstraction it represents, and how
  * to use it.
  *
- * @author Eric Fu
- * @version 10/20/16
- * @author Period: 3
+ * @author TODO Name(s)
+ * @version TODO DATE
+ * @author Period: TODO
  * @author Assignment: GridWorld_Part3_Jumper
  *
- * @author Sources: BugRunner
+ * @author Sources: TODO
  */
 public class JumperRunner
 {
     public static void main( String[] args )
     {
         ActorWorld world = new ActorWorld();
-        world.add(new Jumper());
-        world.add(new Rock());
-        world.add(new Bug());
-        world.add(new Flower());
-        world.show(); 
-        
+        Jumper bob = new Jumper();
+        bob.setColor( Color.BLUE );
+        Jumper bob2 = new Jumper();
+        bob2.setColor( Color.RED );
+        world.add( new Rock() );
+        world.add( new Flower() );
+        world.add( new Actor() );
+        world.add( new Actor() );
+        world.add( new Bug() );
+        world.add( new Location( 7, 8 ), bob );
+        world.add( new Location( 5, 8 ), bob2 );
+        world.show();
 
     }
 }
