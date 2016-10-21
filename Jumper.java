@@ -6,9 +6,17 @@ import info.gridworld.grid.Location;
 import java.awt.Color;
 
 
+
 /**
- * A <code>Jumper</code> is an actor that will jump over Rocks and Flowers and
+ *   A <code>Jumper</code> is an actor that will jump over Rocks and Flowers and
  * turn.
+ *
+ *  @author  Isa Dash
+ *  @version Oct 20, 2016
+ *  @author  Period: 3
+ *  @author  Assignment: GridWorldPart3Jumper
+ *
+ *  @author  Sources: Bug class used as template
  */
 public class Jumper extends Actor implements Edible
 {
@@ -33,6 +41,9 @@ public class Jumper extends Actor implements Edible
     }
 
 
+    /**
+     * act method for the jumper that determined if jumper can or cannot jump
+     */
     public void act()
     {
         if ( canJump() )
@@ -52,8 +63,8 @@ public class Jumper extends Actor implements Edible
 
 
     /**
-     * Moves the Jumper forward two locations. The location two in front must be
-     * valid or the Jumper will remove itself from the grid.
+     * Moves the Jumper forward two locations. If location is not
+     * valid, the Jumper removes itself from the grid.
      */
     public void jump()
     {
@@ -71,11 +82,11 @@ public class Jumper extends Actor implements Edible
 
 
     /**
-     * Tests whether this Jumper can move forward into a location two in front
+     * Tests if this Jumper can move forward into a location two steps ahead
      * that is empty or contains a flower. The location one in front must be
      * empty or contain a Rock or a Flower.
      * 
-     * @return true if this Jumper can move.
+     * @return true or false to indicate whether it can move
      */
     public boolean canJump()
     {
